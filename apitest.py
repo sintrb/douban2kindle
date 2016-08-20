@@ -1,11 +1,10 @@
 # -*- coding: UTF-8 -*
 '''
 @author: sintrb
+GitHub: https://github.com/sintrb/douban2kindle
 '''
-"""
-"""
 
-import requests, sys, os, json, time
+import requests, sys, os, json, time, re, base64
 
 baseheaders = {
 	'User-Agent':'api-client/1 com.douban.frodo/4.1.1(71) Android/22 m2note Meizu m2 note  rom:flyme4',
@@ -39,27 +38,45 @@ def dataof(d,k,p):
 		return v
 
 tests = [
-	{
-	'name':'首页数据',
-	'url':'https://frodo.douban.com/api/v2/recommend_feed',
-	},
-	{
-	'name':'首页数据.第二页',
-	'url':'https://frodo.douban.com/api/v2/recommend_feed',
-	'params':lambda prev: {'since_id':prev and prev['recommend_feeds'][-1]['id']}
-	},
-	{
-	'name':'日记数据',
-	'url':'https://frodo.douban.com/api/v2/note/574199886',
-	},
-	{
-	'name':'日记评论',
-	'url':'https://frodo.douban.com/api/v2/note/574199886/comments',
-	},
-	{
-	'name':'日记相关推荐',
-	'url':'https://frodo.douban.com/api/v2/note/575280360/recommendations',
-	},
+	# {
+	# 'name':'首页数据',
+	# 'url':'https://frodo.douban.com/api/v2/recommend_feed',
+	# },
+	# {
+	# 'name':'首页数据.第二页',
+	# 'url':'https://frodo.douban.com/api/v2/recommend_feed',
+	# 'params':lambda prev: {'since_id':prev and prev['recommend_feeds'][-1]['id']}
+	# },
+	# {
+	# 'name':'日记数据',
+	# 'url':'https://frodo.douban.com/api/v2/note/574199886',
+	# },
+	# {
+	# 'name':'日记评论',
+	# 'url':'https://frodo.douban.com/api/v2/note/574199886/comments',
+	# },
+	# {
+	# 'name':'日记相关推荐',
+	# 'url':'https://frodo.douban.com/api/v2/note/575280360/recommendations',
+	# },
+	# {
+	# 'name':'相册',
+	# 'url':'https://frodo.douban.com/api/v2/photo_album/1633169751',
+	# },
+	# {
+	# 'name':'相册照片',
+	# 'url':'https://frodo.douban.com/api/v2/photo_album/1633169751/photos',
+	# }
+	# {
+	# 'name':'用户日记列表',
+	# 'url':'https://frodo.douban.com/api/v2/user/51905389/notes',
+	# 'params':{'start':20}
+	# },
+	# {
+	# 'name':'用户日记列表.第二页',
+	# 'url':'https://frodo.douban.com/api/v2/user/51905389/notes',
+	# 'params':lambda prev: {'sta':prev and prev['recommend_feeds'][-1]['id']}
+	# }
 ]
 
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
@@ -76,4 +93,9 @@ for ix, t in enumerate(tests):
 	print '\t', time.time()-st
 	prevres = rjson
 
-# print open('res.json','wb').write()
+while True:
+	res = apirequest('https://frodo.douban.com/api/v2/user/51905389/notes').json()
+	print res['total']
+	break
+
+print 
