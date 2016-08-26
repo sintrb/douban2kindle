@@ -377,6 +377,6 @@ except:
 # ikg.gen()
 
 
-ung = UserNotesGen(userid='51905389', basedir = basedir, colorimg=True, cache=True, gens=['note','album'], replaceimg=None)
+ung = UserNotesGen(userid='65939180', cxt={'title':u'Asina*日记'}, basedir = basedir, colorimg=True, cache=True, gens=['note','album'], replaceimg=None)
 print ung.gen()
 # ./kindlegen.exe -locale zh /d/MyDoc/git/douban2kindle/kindle/kindle.opf
