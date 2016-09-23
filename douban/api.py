@@ -281,7 +281,7 @@ class AppGen(BaseGen):
 	}
 	gens = []
 	def getitems(self):
-		rjson = self.getapi('https://frodo.douban.com/api/v2/recommend_feed?5', cache=self.cache)
+		rjson = self.getapi('https://frodo.douban.com/api/v2/recommend_feed?0', cache=self.cache)
 		items = []
 		for feed in rjson['recommend_feeds']:
 			res = None
@@ -358,8 +358,8 @@ except:
 # 		notes.append(res)
 
 
-# ag = AppGen(basedir = basedir, colorimg=True, cache=True, gens=['note','album'], replaceimg=None)#'http://7jpthm.com1.z0.glb.clouddn.com/image2.png')
-# print ag.gen()
+ag = AppGen(basedir = basedir, colorimg=True, cache=True, gens=['note','album'], replaceimg=None)#'http://7jpthm.com1.z0.glb.clouddn.com/image2.png')
+print ag.gen()
 
 
 # items = [
@@ -377,6 +377,6 @@ except:
 # ikg.gen()
 
 
-ung = UserNotesGen(userid='65939180', cxt={'title':u'Asina*日记'}, basedir = basedir, colorimg=True, cache=True, gens=['note','album'], replaceimg=None)
-print ung.gen()
+# ung = UserNotesGen(userid='65939180', cxt={'title':u'Asina*日记'}, basedir = basedir, colorimg=True, cache=True, gens=['note','album'], replaceimg=None)
+# print ung.gen()
 # ./kindlegen.exe -locale zh /d/MyDoc/git/douban2kindle/kindle/kindle.opf
